@@ -46,14 +46,44 @@ exports.deleteProjectById = (id, ownerId) => {
   return true;
 };
 
-exports.getProjectById = (id) => {
-  const projectIndex = projects.findIndex((project) => project.id === id);
-  if (projectIndex === -1) {
-    return null;
+exports.getProjectById = (id, ownerId) => {
+  const user = users.find((user) => user.id === ownerId);
+  if (!user) {
+    throw new Error("User not found");
   }
-  return projects[projectIndex];
+
+  const project = user.ownedProjects.find((project) => project.id === id);
+  if (!project) {
+    throw new Error("Project not found");
+  }
+  return project;
 };
 
-exports.getAllProjects = () => {
-  return projects;
+exports.getAllProjects = (ownerId) => {
+  return users.find((user) => user.id === ownerId).ownedProjects;
+};
+
+exports.updateProject = (
+  id,
+  title,
+  description,
+  status,
+  deadline,
+  members,
+  ownerId
+) => {
+  const user = users.find((user) => user.id === ownerId);
+  const projects = user.ownedProjects;
+
+  const updatedProject = {
+    id,
+    title: title.length !== 0 ? title : projects[index].title,
+    description:
+      description.length !== 0 ? description : projects[index].description,
+    status: status.length !== 0 ? status : projects[index].status,
+    deadline: deadline.length !== 0 ? deadline : projects[index].deadline,
+    updatedAt: new Date(),
+  };
+  projects[index] = updatedProject;
+  return updatedProject;
 };

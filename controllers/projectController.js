@@ -18,8 +18,9 @@ exports.create = (req, res) => {
 };
 
 exports.getProjects = (req, res) => {
+  const { ownerId } = req.body;
   try {
-    const projects = projectService.getAllProjects();
+    const projects = projectService.getAllProjects(ownerId);
     if (projects) {
       return res.status(200).json(projects);
     }
@@ -46,13 +47,38 @@ exports.deleteProject = (req, res) => {
 
 exports.getProject = (req, res) => {
   const { id } = req.params;
+  const { ownerId } = req.body;
   try {
-    const project = projectService.getProjectById(id);
+    const project = projectService.getProjectById(id, ownerId);
     if (project != null) {
       return res.status(200).json({ project });
     }
     return res.status(404).json({ message: "Project not found" });
   } catch (error) {
     return res.status(500).json({ error: error.message });
+  }
+};
+
+exports.updateProject = (req, res) => {
+  const { id } = req.params;
+  const { ownerId } = req.body;
+  const { title, description, status, deadline, members } = req.body;
+  const updatedTasks = projectService.updateProject(
+    id,
+    title,
+    description,
+    status,
+    deadline,
+    members,
+    ownerId
+  );
+  try {
+    return res
+      .status(201)
+      .json({ updatedTasks, message: "Tasks updated successfully!" });
+  } catch {
+    return res
+      .status(500)
+      .json({ message: "Failed to update tasks", error: err.message });
   }
 };
