@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard Layout</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: Arial, sans-serif;
+      }
+
+      .dashboard {
+        display: flex;
+        height: 100vh;
+        flex-direction: column;
+      }
+
+      .header {
+        background-color: #e1e1e1;
+        color: white;
+        padding: 1rem;
+        text-align: center;
+      }
+
+      .content {
+        display: flex;
+        flex: 1;
+      }
+
+      .sidebar {
+        width: 220px;
+        background-color: #f6f6f6;
+        color: white;
+        padding: 1rem;
+      }
+
+      .sidebar ul {
+        list-style: none;
+      }
+
+      .sidebar ul li {
+        margin: 1rem 0;
+        cursor: pointer;
+      }
+
+      .main {
+        flex: 1;
+        padding: 2rem;
+        background-color: #ecf0f1;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="dashboard">
+      <div class="header"></div>
+      <div class="content">
+        <div class="sidebar"></div>
+        <div class="main">
+          <h2>Main Content Area</h2>
+        </div>
+      </div>
+    </div>
+    <script src="dashboard.js"></script>
+  </body>
+</html>

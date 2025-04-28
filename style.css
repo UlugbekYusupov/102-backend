@@ -1,0 +1,37 @@
+body {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  background-color: aliceblue;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  width: 30%;
+  border-radius: 8px;
+  background-color: white;
+  box-shadow: 1px;
+  margin: 0 auto;
+  margin-top: 50px;
+  padding: 15px;
+}
+
+.label{
+    margin-bottom: 5px;
+}
+.input {
+  border: 1px solid grey;
+  padding: 8px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+.submitButton {
+    width: 100%;
+    background-color: aquamarine;
+    border: none;
+    border-radius: 8px;
+    padding: 10px;
+    /* margin-top: 60px; */
+}
