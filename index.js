@@ -99,7 +99,7 @@ function handleSignup() {
     user[labels[index].toLowerCase()] = input.value;
   });
 
-  fetch("http://localhost:3000/api/register", {
+  fetch("http://localhost:3000/auth/register", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(user),
@@ -127,7 +127,7 @@ function handleLogin() {
     return;
   }
 
-  fetch("http://localhost:3000/api/login", {
+  fetch("http://localhost:3000/auth/login", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(user),
